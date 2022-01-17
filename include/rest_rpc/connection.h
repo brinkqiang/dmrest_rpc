@@ -81,7 +81,10 @@ public:
     if (has_closed_) {
       return "";
     }
-
+    if (!socket_.is_open())
+    {
+      return "";
+    }
     return socket_.remote_endpoint().address().to_string();
   }
 
