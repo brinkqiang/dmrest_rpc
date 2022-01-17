@@ -632,6 +632,7 @@ void benchmark_test() {
             "echo",
             [i](asio::error_code ec, string_view data) {
             if (ec) {
+                std::cerr << ec.message() << std::endl;
                 return;
             }
         },
