@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.1)
 project(example)
 
 IF(UNIX)
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+ELSE(UNIX)
+    set(CMAKE_CXX_STANDARD 11)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_EXTENSIONS ON)
 ENDIF(UNIX)
 
 SET(ENABLE_SSL OFF)
@@ -21,12 +25,12 @@ endif()
 
 include_directories(
         "/usr/local/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty/msgpack-c/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty/asio")
+        "../include"
+        "../thirdparty/msgpack-c/include"
+        "../thirdparty/asio")
 
-add_executable(basic_server ${CMAKE_CURRENT_SOURCE_DIR}/server/main.cpp)
-add_executable(basic_client ${CMAKE_CURRENT_SOURCE_DIR}/client/main.cpp)
+add_executable(basic_server server/main.cpp)
+add_executable(basic_client client/main.cpp)
 
 if (ENABLE_SSL)
     target_link_libraries(basic_server ${Boost_LIBRARIES} -lssl -lcrypto -lpthread)
