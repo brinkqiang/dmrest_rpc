@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.8)
 project(example)
 
 IF(UNIX)
@@ -21,12 +21,12 @@ endif()
 
 include_directories(
         "/usr/local/include"
-        "../include"
-        "../thirdparty/msgpack-c/include"
-        "../thirdparty/asio")
+        "${CMAKE_CURRENT_SOURCE_DIR}/../include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty/msgpack-c/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty/asio")
 
-add_executable(basic_server server/main.cpp)
-add_executable(basic_client client/main.cpp)
+add_executable(basic_server ${CMAKE_CURRENT_SOURCE_DIR}/server/main.cpp)
+add_executable(basic_client ${CMAKE_CURRENT_SOURCE_DIR}/client/main.cpp)
 
 if (ENABLE_SSL)
     target_link_libraries(basic_server ${Boost_LIBRARIES} -lssl -lcrypto -lpthread)
