@@ -146,7 +146,7 @@ void test_upload() {
         return;
     }
 
-    std::ifstream file("E:/acl.7z", std::ios::binary);
+    std::ifstream file(__FILE__, std::ios::binary);
     file.seekg(0, std::ios::end);
     size_t file_len = file.tellg();
     file.seekg(0, std::ios::beg);
@@ -645,19 +645,19 @@ void benchmark_test() {
 
 int main() {
     benchmark_test();
-    test_connect();
-    test_callback();
-    test_echo();
-    test_sync_client();
-    test_async_client();
-    test_threads();
-    test_sub1();
-    test_call_with_timeout();
-    test_connect();
-    test_upload();
-    test_download();
-    multi_client_performance(20);
-    test_performance1();
-    test_multiple_thread();
+    //test_connect();
+    //test_callback();
+    //test_echo();
+    //test_sync_client();
+    //test_async_client();
+    //test_threads();
+    //test_sub1();
+    //test_call_with_timeout();
+    //test_connect();
+    //test_upload();
+    //test_download();
+    //multi_client_performance(20);
+    //test_performance1();
+    //test_multiple_thread();
     return 0;
 }
